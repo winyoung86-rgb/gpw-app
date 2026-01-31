@@ -80,7 +80,7 @@ export function ItineraryDisplay() {
           onClick={() => setCurrentStep(6)}
           className="w-full px-4 py-3 bg-purple text-white font-medium rounded-xl hover:bg-purple/80 transition-colors mb-6"
         >
-          View All Parties
+          View All Weekend Parties
         </button>
 
         {/* Tips */}
