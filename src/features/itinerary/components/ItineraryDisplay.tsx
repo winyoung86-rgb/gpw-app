@@ -23,7 +23,7 @@ export function ItineraryDisplay() {
       <GlassCard className="p-6 md:p-8">
         {/* Header */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-purple via-pink to-orange bg-clip-text text-transparent neon-glow">
             Your Weekend, Served.
           </h2>
           <p className="text-text-secondary">
@@ -50,7 +50,7 @@ export function ItineraryDisplay() {
 
         {/* Vibe Summary */}
         {vibeSummary && (
-          <div className="mb-6 p-4 bg-white/5 rounded-xl border border-white/10 italic text-white">
+          <div className="mb-6 p-4 vibe-quote-box rounded-xl italic text-white">
             "{vibeSummary}"
           </div>
         )}
@@ -69,22 +69,26 @@ export function ItineraryDisplay() {
         </div>
 
         {/* Total Cost */}
-        <div className="p-4 bg-pink rounded-xl text-center mb-4">
-          <p className="text-sm text-white mb-1">Estimated Weekend Cost</p>
-          <p className="text-2xl font-heading font-bold text-white">${totalCost}</p>
+        <div className="cost-box-glass">
+          <div className="p-4 bg-white/5 backdrop-blur-sm rounded-xl text-center">
+            <p className="text-sm text-white/70 mb-1">Estimated Weekend Cost</p>
+            <p className="text-2xl font-heading font-bold text-white">${totalCost}</p>
+          </div>
         </div>
 
         {/* View All Parties Button */}
-        <button
-          type="button"
-          onClick={() => setCurrentStep(6)}
-          className="w-full px-4 py-3 bg-purple text-white font-medium rounded-xl hover:bg-purple/80 transition-colors mb-6"
-        >
-          View All Weekend Parties
-        </button>
+        <div className="view-parties-button-wrapper mb-6">
+          <button
+            type="button"
+            onClick={() => setCurrentStep(6)}
+            className="w-full px-4 py-3 bg-white/5 backdrop-blur-sm text-white font-medium rounded-xl hover:bg-white/10 transition-all"
+          >
+            View All Weekend Parties
+          </button>
+        </div>
 
         {/* Tips */}
-        <div className="mb-8">
+        <div className="mb-8 tips-glass">
           <p className="text-xs text-text-muted uppercase tracking-wider mb-3">
             Tips
           </p>

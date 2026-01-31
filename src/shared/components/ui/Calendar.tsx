@@ -94,7 +94,7 @@ export function Calendar({
   }
 
   return (
-    <div className="bg-white/5 backdrop-blur-md rounded-xl p-4 border border-white/10">
+    <div className="calendar-glass rounded-xl p-4 border border-white/10">
       {/* Month Navigation */}
       <div className="flex items-center justify-between mb-4">
         <button
@@ -149,7 +149,7 @@ export function Calendar({
                 aspect-square flex items-center justify-center
                 text-sm font-medium rounded-lg
                 transition-all duration-150 cursor-pointer
-                ${isStart || isEnd ? 'bg-purple text-white shadow-glow-purple' : ''}
+                ${isStart || isEnd ? 'bg-purple text-white date-selected-glow' : ''}
                 ${inRange && !isStart && !isEnd ? 'bg-purple/30 text-white' : ''}
                 ${isEvent && !isStart && !isEnd && !inRange ? 'bg-orange/30 text-white border border-orange/50' : ''}
                 ${!isStart && !isEnd && !inRange && !isEvent ? 'text-white/70 hover:bg-white/10 hover:text-white' : ''}

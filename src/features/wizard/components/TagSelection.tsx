@@ -17,7 +17,7 @@ export function TagSelection() {
       <GlassCard className="p-6 md:p-8">
         {/* Header */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-purple via-pink to-orange bg-clip-text text-transparent neon-glow">
             What&apos;s Your Vibe?
           </h2>
           <p className="text-text-secondary text-base md:text-lg">
@@ -25,22 +25,36 @@ export function TagSelection() {
           </p>
         </div>
 
-        {/* Tag Counter */}
-        <div className="text-center mb-6">
-          <span
-            className={`text-base md:text-lg font-medium ${
-              canProceed ? 'text-purple' : 'text-text-muted'
-            }`}
-          >
-            {selectedTags.length} tags selected (minimum {MIN_TAGS})
-          </span>
+        {/* Tag Counter with Progress Bar */}
+        <div className="mb-6">
+          <p className="text-center text-text-secondary text-sm mb-2">
+            Select at least 3 tags
+          </p>
+          <div className="flex justify-between items-center mb-2">
+            <span
+              className={`text-sm font-medium ${
+                canProceed ? 'text-purple' : 'text-text-muted'
+              }`}
+            >
+              {selectedTags.length} / {MIN_TAGS} tags
+            </span>
+            {canProceed && (
+              <span className="text-xs text-pink font-medium">✓ Ready!</span>
+            )}
+          </div>
+          <div className="tag-progress-bar">
+            <div
+              className="tag-progress-fill"
+              style={{ width: `${Math.min((selectedTags.length / MIN_TAGS) * 100, 100)}%` }}
+            />
+          </div>
         </div>
 
         {/* Tag Categories */}
         <div className="space-y-6">
           {categories.map((category) => (
             <div key={category}>
-              <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-3">
+              <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-3 category-header">
                 {category}
               </h3>
               <div className="flex flex-wrap gap-2">

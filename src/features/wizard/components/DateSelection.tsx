@@ -85,7 +85,7 @@ export function DateSelection() {
       <GlassCard className="p-6 md:p-8">
         {/* Header */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-purple via-pink to-orange bg-clip-text text-transparent neon-glow">
             When Are You In Town?
           </h2>
           <p className="text-text-secondary text-sm md:text-base">
@@ -94,7 +94,7 @@ export function DateSelection() {
         </div>
 
         {/* Event Info */}
-        <div className="text-center mb-6 p-4 bg-white/5 rounded-xl border border-white/10">
+        <div className="text-center mb-6 p-4 event-info-badge rounded-xl">
           <p className="font-heading font-semibold text-lg">
             {selectedEvent.name} — {selectedEvent.city}
           </p>
@@ -117,21 +117,25 @@ export function DateSelection() {
 
         {/* Selected Dates Display */}
         <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-            <p className="text-xs text-text-muted uppercase tracking-wider mb-1">
-              Arrival
-            </p>
-            <p className="font-medium">
-              {arrivalDate ? formatDisplayDate(arrivalDate) : '—'}
-            </p>
+          <div className="gradient-border-pink">
+            <div className="p-3 bg-background rounded-[7px]">
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">
+                Arrival
+              </p>
+              <p className="font-medium">
+                {arrivalDate ? formatDisplayDate(arrivalDate) : '—'}
+              </p>
+            </div>
           </div>
-          <div className="p-3 bg-white/5 rounded-lg border border-white/10">
-            <p className="text-xs text-text-muted uppercase tracking-wider mb-1">
-              Departure
-            </p>
-            <p className="font-medium">
-              {departureDate ? formatDisplayDate(departureDate) : '—'}
-            </p>
+          <div className="gradient-border-purple">
+            <div className="p-3 bg-background rounded-[7px]">
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-1">
+                Departure
+              </p>
+              <p className="font-medium">
+                {departureDate ? formatDisplayDate(departureDate) : '—'}
+              </p>
+            </div>
           </div>
         </div>
 

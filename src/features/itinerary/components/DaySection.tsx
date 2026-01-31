@@ -23,7 +23,9 @@ export function DaySection({
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 transition-colors text-left"
+        className={`w-full flex items-center justify-between p-4 hover:bg-white/10 transition-colors text-left cursor-pointer ${
+          isExpanded ? 'day-header-expanded' : 'bg-white/5'
+        }`}
       >
         <div className="flex items-center gap-3">
           <span className="text-lg text-white">{isExpanded ? '▼' : '▶'}</span>
