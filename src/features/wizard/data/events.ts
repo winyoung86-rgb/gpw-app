@@ -1,0 +1,52 @@
+import type { Event } from '../../../types'
+
+export const events: Event[] = [
+  {
+    id: 'winter-party',
+    name: 'Winter Party',
+    city: 'Miami',
+    startDate: '2026-02-27',
+    endDate: '2026-03-02',
+    displayText: 'Winter Party — Miami (Feb 27 – Mar 2, 2026)',
+  },
+  {
+    id: 'purple-party',
+    name: 'Purple Party',
+    city: 'Dallas',
+    startDate: '2026-04-29',
+    endDate: '2026-05-04',
+    displayText: 'Purple Party — Dallas (Apr 29 – May 4, 2026)',
+  },
+  {
+    id: 'iml',
+    name: 'IML',
+    city: 'Chicago',
+    startDate: '2026-05-21',
+    endDate: '2026-05-25',
+    displayText: 'IML — Chicago (May 21 – 25, 2026)',
+  },
+  {
+    id: 'nyc-pride',
+    name: 'NYC Pride',
+    city: 'New York',
+    startDate: '2026-06-26',
+    endDate: '2026-06-29',
+    displayText: 'NYC Pride — New York (Jun 26 – 29, 2026)',
+  },
+  {
+    id: 'dore-alley',
+    name: 'Dore Alley',
+    city: 'San Francisco',
+    startDate: '2026-07-25',
+    endDate: '2026-07-27',
+    displayText: 'Dore Alley — San Francisco (Jul 25 – 27, 2026)',
+  },
+  {
+    id: 'folsom',
+    name: 'Folsom',
+    city: 'San Francisco',
+    startDate: '2026-09-25',
+    endDate: '2026-09-28',
+    displayText: 'Folsom Street Fair — San Francisco (Sep 25 – 28, 2026)',
+  },
+]
