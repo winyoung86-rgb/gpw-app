@@ -38,9 +38,9 @@ function App() {
       <div className="min-h-screen bg-background">
         {/* Background gradient orbs for glass effect */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -left-32 w-96 h-96 bg-purple/20 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 -right-32 w-96 h-96 bg-pink/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-orange/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 -left-32 w-96 h-96 bg-purple/20 rounded-full blur-3xl blob-animate-1" />
+          <div className="absolute top-1/2 -right-32 w-96 h-96 bg-pink/20 rounded-full blur-3xl blob-animate-2" />
+          <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-orange/10 rounded-full blur-3xl blob-animate-3" />
         </div>
 
         {/* Main content */}

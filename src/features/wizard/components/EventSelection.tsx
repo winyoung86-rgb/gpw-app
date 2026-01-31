@@ -19,19 +19,21 @@ export function EventSelection() {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <GlassCard className="p-8">
+      <GlassCard className="p-10 md:p-12">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-purple via-pink to-orange bg-clip-text text-transparent">
+        <div className="text-center mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple via-pink to-orange bg-clip-text text-transparent neon-glow">
             GAY PARTY WEEKEND!
           </h1>
-          <p className="text-white">
-            Boots polished? Harness packed? Let&apos;s plan this.
-          </p>
         </div>
 
+        {/* Tagline */}
+        <p className="text-white text-center mb-6">
+          Boots polished? Harness packed? Let&apos;s plan this.
+        </p>
+
         {/* Event Selector */}
-        <div className="mb-8">
+        <div className="mb-6">
           <Select
             options={eventOptions}
             placeholder="Where are we going, gorgeous?"
@@ -52,7 +54,7 @@ export function EventSelection() {
         </div>
 
         {/* Footer */}
-        <p className="text-xs text-pink text-center mt-6">
+        <p className="text-xs text-pink text-center mt-8">
           Developed by Winslow Y<br />@4the.win
         </p>
       </GlassCard>

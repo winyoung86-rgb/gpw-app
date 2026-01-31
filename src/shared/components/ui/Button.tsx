@@ -18,7 +18,7 @@ export function Button({
 
   const variants = {
     primary:
-      'bg-orange text-white hover:shadow-glow-orange active:scale-95 disabled:hover:shadow-none',
+      'bg-orange text-white shadow-[0_0_15px_rgba(255,69,0,0.4)] hover:shadow-[0_0_25px_rgba(255,69,0,0.6)] active:scale-95 disabled:shadow-none disabled:hover:shadow-none',
     secondary:
       'bg-white/5 text-white border border-white/10 hover:bg-white/10 active:scale-95',
     ghost: 'bg-transparent text-white/70 hover:text-white hover:bg-white/5',

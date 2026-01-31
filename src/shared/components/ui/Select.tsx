@@ -20,21 +20,21 @@ export function Select({
   ...props
 }: SelectProps) {
   return (
-    <div className="relative">
+    <div className="relative p-[1px] rounded-lg bg-gradient-to-r from-pink/40 via-purple/40 to-pink/40">
       <select
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
         className={`
           w-full appearance-none
-          bg-white/5 backdrop-blur-md
-          border border-white/10
+          bg-background backdrop-blur-md
+          border-none
           text-white
           px-4 py-3
           rounded-lg
           cursor-pointer
           transition-all duration-200
-          hover:bg-white/10 hover:border-white/20
-          focus:outline-none focus:ring-2 focus:ring-purple/50 focus:border-purple
+          hover:bg-white/5
+          focus:outline-none focus:ring-2 focus:ring-purple/50
           disabled:opacity-50 disabled:cursor-not-allowed
           ${className}
         `}

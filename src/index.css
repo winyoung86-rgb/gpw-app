@@ -75,10 +75,12 @@ h3 {
 
 /* Glass Card Component */
 .glass-card {
-  background: var(--color-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-glass-border);
+  background:
+    radial-gradient(ellipse at top, rgba(176, 38, 255, 0.08) 0%, transparent 50%),
+    var(--color-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-glass);
 }
@@ -126,4 +128,52 @@ h3 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Neon glow text effect */
+.neon-glow {
+  text-shadow:
+    0 0 8px rgba(255, 0, 128, 0.3),
+    0 0 16px rgba(255, 0, 128, 0.2),
+    0 0 32px rgba(176, 38, 255, 0.1);
+}
+
+/* Animated background blobs */
+@keyframes blob-drift-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(150px, 120px) scale(1.5);
+  }
+}
+
+@keyframes blob-drift-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-180px, -100px) scale(1.4);
+  }
+}
+
+@keyframes blob-drift-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(120px, -150px) scale(1.6);
+  }
+}
+
+.blob-animate-1 {
+  animation: blob-drift-1 6s ease-in-out infinite;
+}
+
+.blob-animate-2 {
+  animation: blob-drift-2 5s ease-in-out infinite;
+}
+
+.blob-animate-3 {
+  animation: blob-drift-3 5.5s ease-in-out infinite;
 }
