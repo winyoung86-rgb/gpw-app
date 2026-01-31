@@ -24,7 +24,7 @@ export function PartyCard({ party, onRemove }: PartyCardProps) {
       </div>
 
       {/* Description */}
-      <p className="text-text-secondary text-sm mb-3 line-clamp-2">
+      <p className="text-text-secondary text-sm mb-3">
         {party.description}
       </p>
 

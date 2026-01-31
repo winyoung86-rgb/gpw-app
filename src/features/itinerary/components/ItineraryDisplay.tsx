@@ -104,7 +104,7 @@ export function ItineraryDisplay() {
 
         {/* Footer */}
         <p className="text-xs text-pink text-center mt-6">
-          Developed by Winslow Y - @4the.win
+          Developed by Winslow Y<br />@4the.win
         </p>
       </GlassCard>
     </div>
