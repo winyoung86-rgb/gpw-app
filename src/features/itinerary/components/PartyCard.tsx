@@ -50,7 +50,7 @@ export function PartyCard({ party, onRemove }: PartyCardProps) {
         </div>
         <div className="flex items-center gap-2 text-text-secondary">
           <span>📍</span>
-          <span className="truncate">{party.venue}</span>
+          <span>{party.venue}</span>
         </div>
       </div>
 

@@ -31,20 +31,11 @@ export function ItineraryDisplay() {
           </p>
         </div>
 
-        {/* Selected Tags + View All Parties Button */}
+        {/* Selected Tags */}
         <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-xs text-text-muted uppercase tracking-wider">
-              Selected Tags
-            </p>
-            <button
-              type="button"
-              onClick={() => setCurrentStep(6)}
-              className="px-4 py-2 bg-purple text-white text-sm font-medium rounded-lg hover:bg-purple/80 transition-colors"
-            >
-              View All Parties
-            </button>
-          </div>
+          <p className="text-xs text-text-muted uppercase tracking-wider mb-2">
+            Selected Tags
+          </p>
           <div className="flex flex-wrap gap-2">
             {selectedTags.map((tag) => (
               <span
@@ -78,10 +69,19 @@ export function ItineraryDisplay() {
         </div>
 
         {/* Total Cost */}
-        <div className="p-4 bg-pink rounded-xl text-center mb-6">
+        <div className="p-4 bg-pink rounded-xl text-center mb-4">
           <p className="text-sm text-white mb-1">Estimated Weekend Cost</p>
           <p className="text-2xl font-heading font-bold text-white">${totalCost}</p>
         </div>
+
+        {/* View All Parties Button */}
+        <button
+          type="button"
+          onClick={() => setCurrentStep(6)}
+          className="w-full px-4 py-3 bg-purple text-white font-medium rounded-xl hover:bg-purple/80 transition-colors mb-6"
+        >
+          View All Parties
+        </button>
 
         {/* Tips */}
         <div className="mb-8">
