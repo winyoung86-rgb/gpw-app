@@ -11,6 +11,7 @@ export function ItineraryDisplay() {
     totalCost,
     removeParty,
     reset,
+    setCurrentStep,
   } = useWizardStore()
 
   if (!selectedEvent) {
@@ -30,11 +31,20 @@ export function ItineraryDisplay() {
           </p>
         </div>
 
-        {/* Selected Tags */}
+        {/* Selected Tags + View All Parties Button */}
         <div className="mb-6">
-          <p className="text-xs text-text-muted uppercase tracking-wider mb-2">
-            Selected Tags
-          </p>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-xs text-text-muted uppercase tracking-wider">
+              Selected Tags
+            </p>
+            <button
+              type="button"
+              onClick={() => setCurrentStep(6)}
+              className="px-4 py-2 bg-purple text-white text-sm font-medium rounded-lg hover:bg-purple/80 transition-colors"
+            >
+              View All Parties
+            </button>
+          </div>
           <div className="flex flex-wrap gap-2">
             {selectedTags.map((tag) => (
               <span
@@ -78,7 +88,7 @@ export function ItineraryDisplay() {
           <p className="text-xs text-text-muted uppercase tracking-wider mb-3">
             Tips
           </p>
-          <ul className="space-y-2 text-sm text-text-secondary">
+          <ul className="space-y-2 text-sm text-white">
             <li>• Hydrate between venues, queen</li>
             <li>• Pack a spare harness—trust us</li>
             <li>• Download offline maps</li>
@@ -94,7 +104,7 @@ export function ItineraryDisplay() {
 
         {/* Footer */}
         <p className="text-xs text-pink text-center mt-6">
-          Developed by Winslow Y
+          Developed by Winslow Y - @4the.win
         </p>
       </GlassCard>
     </div>

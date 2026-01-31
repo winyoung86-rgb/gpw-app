@@ -25,7 +25,7 @@ export function EventSelection() {
           <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-purple via-pink to-orange bg-clip-text text-transparent">
             GAY PARTY WEEKEND!
           </h1>
-          <p className="text-text-secondary">
+          <p className="text-white">
             Boots polished? Harness packed? Let&apos;s plan this.
           </p>
         </div>
@@ -53,7 +53,7 @@ export function EventSelection() {
 
         {/* Footer */}
         <p className="text-xs text-pink text-center mt-6">
-          Developed by Winslow Y
+          Developed by Winslow Y - @4the.win
         </p>
       </GlassCard>
     </div>

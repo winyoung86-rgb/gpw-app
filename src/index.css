@@ -120,9 +120,9 @@ h3 {
   }
 }
 
-/* Gradient text for tags */
+/* Gradient text for tags - brighter colors for better readability */
 .gradient-tag-text {
-  background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-purple) 100%);
+  background: linear-gradient(135deg, #FF4D94 0%, #D966FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

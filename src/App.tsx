@@ -6,7 +6,7 @@ import {
   LoadingState,
   useWizardStore,
 } from './features/wizard'
-import { ItineraryDisplay } from './features/itinerary'
+import { ItineraryDisplay, AllPartiesDisplay } from './features/itinerary'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +26,7 @@ function WizardRouter() {
     3: <DateSelection />,
     4: <LoadingState />,
     5: <ItineraryDisplay />,
+    6: <AllPartiesDisplay />,
   }
 
   return <>{steps[currentStep]}</>
