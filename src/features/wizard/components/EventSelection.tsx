@@ -54,7 +54,7 @@ export function EventSelection() {
         </div>
 
         {/* Footer */}
-        <p className="text-xs text-pink text-center mt-8">
+        <p className="text-xs text-pink text-center mt-8 footer-glow">
           Developed by Winslow Y<br />@4the.win
         </p>
       </GlassCard>

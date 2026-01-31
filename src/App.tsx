@@ -17,6 +17,52 @@ const queryClient = new QueryClient({
   },
 })
 
+// Step indicator component
+function StepIndicator({ currentStep }: { currentStep: number }) {
+  // Only show for steps 1-3 (user-interactive steps), hide during loading and results
+  if (currentStep > 3) return null
+
+  const steps = [
+    { num: 1, label: 'Event' },
+    { num: 2, label: 'Vibe' },
+    { num: 3, label: 'Dates' },
+  ]
+
+  return (
+    <div className="flex items-center justify-center gap-2 mb-6">
+      {steps.map((step, index) => (
+        <div key={step.num} className="flex items-center">
+          {/* Step dot */}
+          <div
+            className={`
+              w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium
+              transition-all duration-300
+              ${
+                currentStep === step.num
+                  ? 'bg-purple text-white step-dot-active'
+                  : currentStep > step.num
+                    ? 'bg-pink/30 text-white border border-pink/50'
+                    : 'bg-white/10 text-white/50 border border-white/20'
+              }
+            `}
+          >
+            {currentStep > step.num ? '✓' : step.num}
+          </div>
+          {/* Connector line */}
+          {index < steps.length - 1 && (
+            <div
+              className={`
+                w-8 h-0.5 mx-1 transition-all duration-300
+                ${currentStep > step.num ? 'bg-gradient-to-r from-pink to-purple' : 'bg-white/20'}
+              `}
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function WizardRouter() {
   const currentStep = useWizardStore((state) => state.currentStep)
 
@@ -29,7 +75,14 @@ function WizardRouter() {
     6: <AllPartiesDisplay />,
   }
 
-  return <>{steps[currentStep]}</>
+  return (
+    <div className="w-full">
+      <StepIndicator currentStep={currentStep} />
+      <div className="wizard-step-transition">
+        {steps[currentStep]}
+      </div>
+    </div>
+  )
 }
 
 function App() {

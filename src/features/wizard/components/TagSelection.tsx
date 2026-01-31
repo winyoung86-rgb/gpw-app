@@ -82,7 +82,7 @@ export function TagSelection() {
         </div>
 
         {/* Footer */}
-        <p className="text-xs text-pink text-center mt-6">
+        <p className="text-xs text-pink text-center mt-6 footer-glow">
           Developed by Winslow Y<br />@4the.win
         </p>
       </GlassCard>

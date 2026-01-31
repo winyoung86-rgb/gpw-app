@@ -441,3 +441,48 @@ h3 {
 .view-parties-button-wrapper:hover {
   box-shadow: 0 0 25px rgba(176, 38, 255, 0.4);
 }
+
+/* ===== GLOBAL IMPROVEMENTS ===== */
+
+/* Step indicator active dot glow */
+.step-dot-active {
+  box-shadow: 0 0 12px rgba(176, 38, 255, 0.5);
+}
+
+/* Wizard step fade transition */
+.wizard-step-transition {
+  animation: step-fade-in 0.3s ease-out;
+}
+
+@keyframes step-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer glow effect */
+.footer-glow {
+  text-shadow: 0 0 10px rgba(255, 0, 128, 0.4);
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Custom focus ring for glass buttons */
+.glass-card button:focus-visible,
+.glass-card input:focus-visible {
+  outline-color: var(--color-pink);
+  box-shadow: 0 0 0 4px rgba(255, 0, 128, 0.2);
+}
