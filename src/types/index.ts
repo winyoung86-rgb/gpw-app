@@ -22,13 +22,16 @@ export type TagCategories = Record<TagCategory, string[]>
 // Party types
 export interface Party {
   party_name: string
-  description: string
+  description?: string
   tags: string[]
   start_time: string
   end_time: string
   venue: string
   ticket_price: string
-  confirmed: 'Confirmed' | 'Predicted'
+  confirmed: string // 'Confirmed', 'Predicted', 'Yes', 'Likely', etc.
+  date?: string // YYYY-MM-DD format
+  day?: string // "Sep 24 (Thu)" format from Google Sheets
+  link?: string // URL to event/tickets
 }
 
 // Itinerary types
