@@ -65,6 +65,17 @@ export function ItineraryDisplay() {
           </div>
         )}
 
+        {/* View All Parties Button */}
+        <div className="view-parties-button-wrapper mb-6">
+          <button
+            type="button"
+            onClick={() => setCurrentStep(6)}
+            className="w-full px-4 py-3 bg-white/5 backdrop-blur-sm text-white font-medium rounded-xl hover:bg-white/10 transition-all"
+          >
+            View All Weekend Parties
+          </button>
+        </div>
+
         {/* Itinerary Days */}
         <div className="space-y-3 mb-6">
           {itinerary.map((day, dayIndex) => (
@@ -79,22 +90,11 @@ export function ItineraryDisplay() {
         </div>
 
         {/* Total Cost */}
-        <div className="cost-box-glass">
+        <div className="cost-box-glass mb-6">
           <div className="p-4 bg-white/5 backdrop-blur-sm rounded-xl text-center">
             <p className="text-sm text-white/70 mb-1">Estimated Weekend Cost</p>
             <p className="text-2xl font-heading font-bold text-white">${totalCost}</p>
           </div>
-        </div>
-
-        {/* View All Parties Button */}
-        <div className="view-parties-button-wrapper mb-6">
-          <button
-            type="button"
-            onClick={() => setCurrentStep(6)}
-            className="w-full px-4 py-3 bg-white/5 backdrop-blur-sm text-white font-medium rounded-xl hover:bg-white/10 transition-all"
-          >
-            View All Weekend Parties
-          </button>
         </div>
 
         {/* Tips */}

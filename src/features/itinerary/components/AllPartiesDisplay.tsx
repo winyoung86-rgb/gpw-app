@@ -35,6 +35,12 @@ const CheckIcon = () => (
   </svg>
 )
 
+const LinkIcon = () => (
+  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+  </svg>
+)
+
 interface AllPartyCardProps {
   party: Party
   isInItinerary: boolean
@@ -62,7 +68,7 @@ function AllPartyCard({ party, isInItinerary, onAdd }: AllPartyCardProps) {
           <button
             type="button"
             onClick={onAdd}
-            className="flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full bg-purple/20 text-purple hover:bg-purple/30 transition-colors flex-shrink-0 border border-purple/30"
+            className="flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full bg-purple/20 text-white hover:bg-purple/30 transition-colors flex-shrink-0 border border-purple/30"
           >
             <PlusIcon />
             Add
@@ -97,7 +103,7 @@ function AllPartyCard({ party, isInItinerary, onAdd }: AllPartyCardProps) {
             {party.start_time}{party.end_time ? ` - ${party.end_time}` : ''}
           </span>
         </div>
-        <div className="flex items-center gap-2 text-text-secondary">
+        <div className="flex items-center gap-2 text-text-secondary justify-end">
           <LocationIcon />
           <span className="truncate">{party.venue}</span>
         </div>
@@ -115,9 +121,9 @@ function AllPartyCard({ party, isInItinerary, onAdd }: AllPartyCardProps) {
               href={party.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-colors"
+              className="flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/30 hover:bg-green-500/20 transition-colors"
             >
-              <span className="text-green-400">↗</span>
+              <span className="text-green-400"><LinkIcon /></span>
               <span className="text-white/90">Info</span>
             </a>
           )}
@@ -128,10 +134,63 @@ function AllPartyCard({ party, isInItinerary, onAdd }: AllPartyCardProps) {
                 : 'bg-orange/20 text-orange'
             }`}
           >
-            {party.confirmed === 'Yes' || party.confirmed === 'Confirmed' ? '✓ Confirmed' : '? Predicted'}
+            {party.confirmed === 'Yes' || party.confirmed === 'Confirmed' ? '✓ Confirmed' : 'Likely'}
           </span>
         </div>
       </div>
+    </div>
+  )
+}
+
+interface DaySectionProps {
+  dayKey: string
+  dayLabel: string
+  parties: Party[]
+  isPartyInItinerary: (partyName: string) => boolean
+  onAddParty: (party: Party) => void
+  defaultExpanded?: boolean
+}
+
+function DaySection({ dayKey, dayLabel, parties, isPartyInItinerary, onAddParty, defaultExpanded = false }: DaySectionProps) {
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded)
+
+  // Sort parties by time
+  const sortedParties = useMemo(() => {
+    return [...parties].sort((a, b) => parseTime(a.start_time) - parseTime(b.start_time))
+  }, [parties])
+
+  return (
+    <div className="border border-white/10 rounded-xl overflow-hidden mb-3">
+      {/* Day Header - Clickable */}
+      <button
+        type="button"
+        onClick={() => setIsExpanded(!isExpanded)}
+        className={`w-full flex items-center justify-between p-4 hover:bg-white/10 transition-colors text-left cursor-pointer ${
+          isExpanded ? 'day-header-expanded' : 'bg-white/5'
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-lg text-white">{isExpanded ? '▼' : '▶'}</span>
+          <span className="font-heading font-semibold text-white">{dayLabel}</span>
+        </div>
+        <span className="text-white/70 text-sm">{parties.length} parties</span>
+      </button>
+
+      {/* Parties List */}
+      {isExpanded && (
+        <div className="p-4 pt-0">
+          <div className="grid gap-4 md:grid-cols-2 mt-4">
+            {sortedParties.map((party) => (
+              <AllPartyCard
+                key={`${party.party_name}-${dayKey}`}
+                party={party}
+                isInItinerary={isPartyInItinerary(party.party_name)}
+                onAdd={() => onAddParty(party)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -155,21 +214,26 @@ export function AllPartiesDisplay() {
     }
   }, [selectedEvent, allParties, loadAllParties])
 
-  const [selectedDay, setSelectedDay] = useState<string>('all')
-  const [sortBy, setSortBy] = useState<'time' | 'name' | 'cost'>('time')
-
-  // Get unique days from all parties
-  const days = useMemo((): [string, string][] => {
+  // Group parties by day
+  const partiesByDay = useMemo(() => {
     if (!allParties || allParties.length === 0) return []
-    const uniqueDays = new Map<string, string>()
+
+    const groups = new Map<string, { label: string; parties: Party[] }>()
+
     allParties.forEach((party: Party) => {
       const key = party.date || party.day || 'unknown'
-      if (!uniqueDays.has(key)) {
-        uniqueDays.set(key, party.day || party.date || 'Unknown Day')
+      const label = party.day || party.date || 'Unknown Day'
+
+      if (!groups.has(key)) {
+        groups.set(key, { label, parties: [] })
       }
+      groups.get(key)!.parties.push(party)
     })
-    // Sort by date
-    return Array.from(uniqueDays.entries()).sort((a, b) => a[0].localeCompare(b[0]))
+
+    // Sort by date and return as array
+    return Array.from(groups.entries())
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .map(([key, value]) => ({ key, ...value }))
   }, [allParties])
 
   // Check if a party is in the itinerary
@@ -183,41 +247,6 @@ export function AllPartiesDisplay() {
   const itineraryCount = useMemo((): number => {
     return itinerary.reduce((count: number, day) => count + day.parties.length, 0)
   }, [itinerary])
-
-  // Filter and sort parties
-  const filteredParties = useMemo(() => {
-    if (!allParties || allParties.length === 0) return []
-    let filtered = [...allParties]
-
-    // Filter by day
-    if (selectedDay !== 'all') {
-      filtered = filtered.filter(
-        (party) => (party.date || party.day) === selectedDay
-      )
-    }
-
-    // Sort
-    filtered.sort((a, b) => {
-      switch (sortBy) {
-        case 'name':
-          return a.party_name.localeCompare(b.party_name)
-        case 'cost': {
-          const priceA = parseInt(a.ticket_price?.match(/\d+/)?.[0] || '0', 10)
-          const priceB = parseInt(b.ticket_price?.match(/\d+/)?.[0] || '0', 10)
-          return priceA - priceB
-        }
-        case 'time':
-        default: {
-          // Sort by day first, then time
-          const dayCompare = (a.date || a.day || '').localeCompare(b.date || b.day || '')
-          if (dayCompare !== 0) return dayCompare
-          return parseTime(a.start_time) - parseTime(b.start_time)
-        }
-      }
-    })
-
-    return filtered
-  }, [allParties, selectedDay, sortBy])
 
   if (!selectedEvent) {
     return null
@@ -325,73 +354,25 @@ export function AllPartiesDisplay() {
           </Button>
         </div>
 
-        {/* Day Tabs */}
-        <div className="mb-4 overflow-x-auto">
-          <div className="flex gap-2 pb-2">
-            <button
-              type="button"
-              onClick={() => setSelectedDay('all')}
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                selectedDay === 'all'
-                  ? 'bg-purple text-white'
-                  : 'bg-white/10 text-white/70 hover:bg-white/20'
-              }`}
-            >
-              All Days ({(allParties || []).length})
-            </button>
-            {days.map(([key, label]) => {
-              const count = (allParties || []).filter(
-                (p: Party) => (p.date || p.day) === key
-              ).length
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => setSelectedDay(key)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                    selectedDay === key
-                      ? 'bg-purple text-white'
-                      : 'bg-white/10 text-white/70 hover:bg-white/20'
-                  }`}
-                >
-                  {label} ({count})
-                </button>
-              )
-            })}
-          </div>
+        {/* Add Parties Helper Text */}
+        <div className="mb-4 text-center">
+          <p className="text-xl text-purple font-medium">+ Add Parties to your itinerary</p>
         </div>
 
-        {/* Sort Controls */}
-        <div className="mb-6 flex items-center gap-2">
-          <span className="text-sm text-text-muted">Sort by:</span>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as 'time' | 'name' | 'cost')}
-            className="bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-purple"
-          >
-            <option value="time">Time</option>
-            <option value="name">Name</option>
-            <option value="cost">Cost</option>
-          </select>
-        </div>
-
-        {/* Party Cards Grid */}
-        <div className="grid gap-4 md:grid-cols-2 mb-8">
-          {filteredParties.map((party) => (
-            <AllPartyCard
-              key={`${party.party_name}-${party.date || party.day}`}
-              party={party}
-              isInItinerary={isPartyInItinerary(party.party_name)}
-              onAdd={() => addPartyToItinerary(party)}
+        {/* Day Sections */}
+        <div className="mb-8">
+          {partiesByDay.map((dayGroup, index) => (
+            <DaySection
+              key={dayGroup.key}
+              dayKey={dayGroup.key}
+              dayLabel={dayGroup.label}
+              parties={dayGroup.parties}
+              isPartyInItinerary={isPartyInItinerary}
+              onAddParty={addPartyToItinerary}
+              defaultExpanded={index === 0}
             />
           ))}
         </div>
-
-        {filteredParties.length === 0 && (
-          <div className="text-center py-8">
-            <p className="text-text-muted">No parties found for this day.</p>
-          </div>
-        )}
 
         {/* Footer */}
         <p className="text-xs text-pink text-center mt-6 footer-glow">

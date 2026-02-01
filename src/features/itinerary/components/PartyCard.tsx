@@ -25,6 +25,12 @@ const TicketIcon = () => (
   </svg>
 )
 
+const LinkIcon = () => (
+  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+  </svg>
+)
+
 export function PartyCard({ party, onRemove }: PartyCardProps) {
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 party-card-glow">
@@ -68,7 +74,7 @@ export function PartyCard({ party, onRemove }: PartyCardProps) {
             {party.start_time} - {party.end_time}
           </span>
         </div>
-        <div className="flex items-center gap-2 text-text-secondary">
+        <div className="flex items-center gap-2 text-text-secondary justify-end">
           <LocationIcon />
           <span>{party.venue}</span>
         </div>
@@ -86,9 +92,9 @@ export function PartyCard({ party, onRemove }: PartyCardProps) {
               href={party.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-colors"
+              className="flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/30 hover:bg-green-500/20 transition-colors"
             >
-              <span className="text-green-400">↗</span>
+              <span className="text-green-400"><LinkIcon /></span>
               <span className="text-white/90">Info</span>
             </a>
           )}
@@ -99,7 +105,7 @@ export function PartyCard({ party, onRemove }: PartyCardProps) {
                 : 'bg-orange/20 text-orange'
             }`}
           >
-            {party.confirmed === 'Confirmed' ? '✓ Confirmed' : '? Predicted'}
+            {party.confirmed === 'Confirmed' ? '✓ Confirmed' : 'Likely'}
           </span>
         </div>
       </div>

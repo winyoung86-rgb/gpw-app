@@ -51,10 +51,10 @@ export function TagSelection() {
         </div>
 
         {/* Tag Categories */}
-        <div className="space-y-6">
+        <div className="space-y-8">
           {categories.map((category) => (
             <div key={category}>
-              <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-3 category-header">
+              <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-3 mt-2 category-header">
                 {category}
               </h3>
               <div className="flex flex-wrap gap-2">
