@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   EventSelection,
@@ -7,6 +8,7 @@ import {
   useWizardStore,
 } from './features/wizard'
 import { ItineraryDisplay, AllPartiesDisplay } from './features/itinerary'
+import { trackPageView } from './utils/analytics'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -63,8 +65,24 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
   )
 }
 
+// Map step numbers to page names for analytics
+const stepPageNames: Record<number, string> = {
+  1: '/event-selection',
+  2: '/tag-selection',
+  3: '/date-selection',
+  4: '/loading',
+  5: '/itinerary',
+  6: '/all-parties',
+}
+
 function WizardRouter() {
   const currentStep = useWizardStore((state) => state.currentStep)
+
+  // Track page views when step changes
+  useEffect(() => {
+    const pageName = stepPageNames[currentStep] || `/step-${currentStep}`
+    trackPageView(pageName)
+  }, [currentStep])
 
   const steps: Record<number, React.ReactNode> = {
     1: <EventSelection />,
