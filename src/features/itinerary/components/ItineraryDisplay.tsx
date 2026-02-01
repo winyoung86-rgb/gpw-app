@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { GlassCard, Button } from '../../../shared/components/ui'
 import { useWizardStore } from '../../wizard/stores/wizardStore'
 import { DaySection } from './DaySection'
@@ -8,11 +9,20 @@ export function ItineraryDisplay() {
     selectedTags,
     vibeSummary,
     itinerary,
+    allParties,
     totalCost,
     removeParty,
     reset,
     setCurrentStep,
+    loadAllParties,
   } = useWizardStore()
+
+  // Load all parties to enrich itinerary with links
+  useEffect(() => {
+    if (selectedEvent && allParties.length === 0) {
+      loadAllParties()
+    }
+  }, [selectedEvent, allParties.length, loadAllParties])
 
   if (!selectedEvent) {
     return null

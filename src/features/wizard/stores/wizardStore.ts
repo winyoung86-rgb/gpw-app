@@ -2,6 +2,31 @@ import { create } from 'zustand'
 import type { Event, ItineraryDay, Party } from '../../../types'
 import { fetchPartiesByEvent } from '../../../services/partyService'
 
+// Helper to enrich itinerary parties with data from allParties (like links)
+function enrichItineraryWithPartyData(
+  itinerary: ItineraryDay[],
+  allParties: Party[]
+): ItineraryDay[] {
+  if (!allParties.length) return itinerary
+
+  return itinerary.map((day) => ({
+    ...day,
+    parties: day.parties.map((party) => {
+      // Find matching party in allParties by name
+      const fullPartyData = allParties.find(
+        (p) => p.party_name === party.party_name
+      )
+      if (fullPartyData) {
+        return {
+          ...party,
+          link: fullPartyData.link || party.link,
+        }
+      }
+      return party
+    }),
+  }))
+}
+
 // Helper to parse time strings like "10:00 PM", "10 PM", "22:00" to minutes since midnight
 function parseTimeToMinutes(timeStr: string): number {
   if (!timeStr) return 0
@@ -262,7 +287,9 @@ export const useWizardStore = create<WizardState & WizardActions>((set) => ({
 
     try {
       const parties = await fetchPartiesByEvent(state.selectedEvent.name)
-      set({ allParties: parties, isLoading: false })
+      // Enrich itinerary parties with links from the full party data
+      const enrichedItinerary = enrichItineraryWithPartyData(state.itinerary, parties)
+      set({ allParties: parties, itinerary: enrichedItinerary, isLoading: false })
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to load parties'
       set({ error: message, isLoading: false })

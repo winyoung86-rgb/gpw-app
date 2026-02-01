@@ -25,6 +25,12 @@ const TicketIcon = () => (
   </svg>
 )
 
+const ExternalLinkIcon = () => (
+  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+  </svg>
+)
+
 export function PartyCard({ party, onRemove }: PartyCardProps) {
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 party-card-glow">
@@ -80,15 +86,28 @@ export function PartyCard({ party, onRemove }: PartyCardProps) {
           <TicketIcon />
           {party.ticket_price || 'Free'}
         </span>
-        <span
-          className={`text-xs font-medium px-2 py-1 rounded-full ${
-            party.confirmed === 'Confirmed'
-              ? 'bg-green-500/20 text-green-400'
-              : 'bg-orange/20 text-orange'
-          }`}
-        >
-          {party.confirmed === 'Confirmed' ? '✓ Confirmed' : '? Predicted'}
-        </span>
+        <div className="flex items-center gap-2">
+          {party.link && (
+            <a
+              href={party.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-colors"
+            >
+              <span className="text-green-400">↗</span>
+              <span className="text-white/90">Info</span>
+            </a>
+          )}
+          <span
+            className={`text-xs font-medium px-2 py-1 rounded-full ${
+              party.confirmed === 'Confirmed'
+                ? 'bg-green-500/20 text-green-400'
+                : 'bg-orange/20 text-orange'
+            }`}
+          >
+            {party.confirmed === 'Confirmed' ? '✓ Confirmed' : '? Predicted'}
+          </span>
+        </div>
       </div>
     </div>
   )

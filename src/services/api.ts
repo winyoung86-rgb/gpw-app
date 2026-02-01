@@ -35,7 +35,25 @@ export async function fetchItinerary(
     try {
       const parsed = JSON.parse(text)
       // Handle both array and object responses from n8n
-      return Array.isArray(parsed) ? parsed[0] : parsed
+      const result = Array.isArray(parsed) ? parsed[0] : parsed
+
+      // Ensure required fields exist with defaults
+      // Calculate total_cost from itinerary if not provided
+      if (result.total_cost === undefined && result.itinerary) {
+        result.total_cost = result.itinerary.reduce((total: number, day: { parties: Array<{ ticket_price?: string }> }) => {
+          return total + day.parties.reduce((dayTotal: number, party: { ticket_price?: string }) => {
+            const match = party.ticket_price?.match(/\$?(\d+)/)
+            return dayTotal + (match ? parseInt(match[1], 10) : 0)
+          }, 0)
+        }, 0)
+      }
+
+      // Set all_parties to empty array if not provided (will be loaded from Supabase)
+      if (!result.all_parties) {
+        result.all_parties = []
+      }
+
+      return result
     } catch {
       throw new Error(`Invalid response from backend: ${text.substring(0, 100)}`)
     }
