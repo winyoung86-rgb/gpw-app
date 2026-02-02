@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { GlassCard, Button } from '../../../shared/components/ui'
+import { GlassCard, Button, Footer } from '../../../shared/components/ui'
 import { useWizardStore } from '../stores/wizardStore'
 import { fetchItinerary, formatDate } from '../../../services/api'
 
@@ -156,10 +156,7 @@ export function LoadingState() {
           </p>
         </div>
 
-        {/* Footer */}
-        <p className="text-xs text-pink text-center mt-6 relative z-10 footer-glow">
-          Developed by Winslow Y<br />@4the.win
-        </p>
+        <Footer />
       </GlassCard>
     </div>
   )

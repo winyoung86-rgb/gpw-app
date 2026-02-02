@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { GlassCard, Button } from '../../../shared/components/ui'
+import { GlassCard, Button, Footer } from '../../../shared/components/ui'
 import { useWizardStore } from '../../wizard/stores/wizardStore'
 import { DaySection } from './DaySection'
 
@@ -116,10 +116,7 @@ export function ItineraryDisplay() {
           </Button>
         </div>
 
-        {/* Footer */}
-        <p className="text-xs text-pink text-center mt-6 footer-glow">
-          Developed by Winslow Y<br />@4the.win
-        </p>
+        <Footer />
       </GlassCard>
     </div>
   )

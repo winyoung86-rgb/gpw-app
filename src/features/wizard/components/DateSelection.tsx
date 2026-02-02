@@ -1,5 +1,5 @@
 import { useMemo, useEffect } from 'react'
-import { GlassCard, Button } from '../../../shared/components/ui'
+import { GlassCard, Button, Footer } from '../../../shared/components/ui'
 import { Calendar } from '../../../shared/components/ui/Calendar'
 import { useWizardStore } from '../stores/wizardStore'
 
@@ -162,10 +162,7 @@ export function DateSelection() {
           </Button>
         </div>
 
-        {/* Footer */}
-        <p className="text-xs text-pink text-center mt-6 footer-glow">
-          Developed by Winslow Y<br />@4the.win
-        </p>
+        <Footer />
       </GlassCard>
     </div>
   )

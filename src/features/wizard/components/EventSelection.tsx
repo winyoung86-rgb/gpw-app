@@ -1,4 +1,4 @@
-import { GlassCard, Select, Button } from '../../../shared/components/ui'
+import { GlassCard, Select, Button, Footer } from '../../../shared/components/ui'
 import { useWizardStore } from '../stores/wizardStore'
 import { events } from '../data/events'
 
@@ -8,6 +8,7 @@ export function EventSelection() {
   const eventOptions = events.map((event) => ({
     value: event.id,
     label: event.displayText,
+    labelShort: event.displayTextShort,
   }))
 
   const handleEventChange = (eventId: string) => {
@@ -53,10 +54,7 @@ export function EventSelection() {
           </Button>
         </div>
 
-        {/* Footer */}
-        <p className="text-xs text-pink text-center mt-8 footer-glow">
-          Developed by Winslow Y<br />@4the.win
-        </p>
+        <Footer />
       </GlassCard>
     </div>
   )

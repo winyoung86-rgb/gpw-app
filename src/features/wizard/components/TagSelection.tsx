@@ -1,4 +1,4 @@
-import { GlassCard, Button, TagPill } from '../../../shared/components/ui'
+import { GlassCard, Button, TagPill, Footer } from '../../../shared/components/ui'
 import { useWizardStore } from '../stores/wizardStore'
 import { tagCategories } from '../data/tags'
 import type { TagCategory } from '../../../types'
@@ -54,7 +54,7 @@ export function TagSelection() {
         <div className="space-y-8">
           {categories.map((category) => (
             <div key={category}>
-              <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-3 mt-2 category-header">
+              <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-4 mt-2 category-header">
                 {category}
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -81,10 +81,7 @@ export function TagSelection() {
           </Button>
         </div>
 
-        {/* Footer */}
-        <p className="text-xs text-pink text-center mt-6 footer-glow">
-          Developed by Winslow Y<br />@4the.win
-        </p>
+        <Footer />
       </GlassCard>
     </div>
   )

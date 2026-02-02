@@ -182,14 +182,14 @@ h3 {
 .category-header {
   position: relative;
   display: inline-block;
-  padding-bottom: 6px;
+  padding-bottom: 24px;
 }
 
 .category-header::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: calc(100% - 16px);
   width: 100%;
   height: 2px;
   background: linear-gradient(90deg, var(--color-pink) 0%, var(--color-purple) 100%);

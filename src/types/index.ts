@@ -6,6 +6,7 @@ export interface Event {
   startDate: string
   endDate: string
   displayText: string
+  displayTextShort: string
 }
 
 // Tag types

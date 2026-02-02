@@ -7,7 +7,8 @@ export const events: Event[] = [
     city: 'Miami',
     startDate: '2026-02-27',
     endDate: '2026-03-02',
-    displayText: 'Winter Party — Miami (Feb 27 – Mar 2, 2026)',
+    displayText: 'Winter Party — Miami (Feb 27 – Mar 2)',
+    displayTextShort: 'Winter Party — Miami',
   },
   {
     id: 'purple-party',
@@ -15,7 +16,8 @@ export const events: Event[] = [
     city: 'Dallas',
     startDate: '2026-04-29',
     endDate: '2026-05-04',
-    displayText: 'Purple Party — Dallas (Apr 29 – May 4, 2026)',
+    displayText: 'Purple Party — Dallas (Apr 29 – May 4)',
+    displayTextShort: 'Purple Party — Dallas',
   },
   {
     id: 'iml',
@@ -23,7 +25,8 @@ export const events: Event[] = [
     city: 'Chicago',
     startDate: '2026-05-21',
     endDate: '2026-05-25',
-    displayText: 'IML — Chicago (May 21 – 25, 2026)',
+    displayText: 'IML — Chicago (May 21 – 25)',
+    displayTextShort: 'IML — Chicago',
   },
   {
     id: 'nyc-pride',
@@ -31,7 +34,8 @@ export const events: Event[] = [
     city: 'New York',
     startDate: '2026-06-26',
     endDate: '2026-06-29',
-    displayText: 'NYC Pride — New York (Jun 26 – 29, 2026)',
+    displayText: 'NYC Pride — New York (Jun 26 – 29)',
+    displayTextShort: 'NYC Pride — New York',
   },
   {
     id: 'dore-alley',
@@ -39,7 +43,8 @@ export const events: Event[] = [
     city: 'San Francisco',
     startDate: '2026-07-25',
     endDate: '2026-07-27',
-    displayText: 'Dore Alley — San Francisco (Jul 25 – 27, 2026)',
+    displayText: 'Dore Alley — San Francisco (Jul 25 – 27)',
+    displayTextShort: 'Dore Alley — SF',
   },
   {
     id: 'folsom',
@@ -47,6 +52,7 @@ export const events: Event[] = [
     city: 'San Francisco',
     startDate: '2026-09-25',
     endDate: '2026-09-28',
-    displayText: 'Folsom Street Fair — San Francisco (Sep 25 – 28, 2026)',
+    displayText: 'Folsom — San Francisco (Sep 25 – 28)',
+    displayTextShort: 'Folsom — SF',
   },
 ]
