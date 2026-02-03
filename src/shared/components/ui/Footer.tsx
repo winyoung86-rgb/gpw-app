@@ -67,7 +67,7 @@ export function Footer() {
     // For steps 5 & 6, inject mock data so pages render
     if (step >= 5) {
       setSelectedEvent(events[5]) // Folsom
-      setSelectedTags(['Circuit', 'Leather', 'EDM'])
+      setSelectedTags(['Circuit', 'Leather', 'EDM', 'Underground', 'Dark', 'Techno', 'Muscle', 'Bears', 'Harness', 'Jock'])
       setResults({
         vibeSummary: 'Get ready for a high-energy leather weekend!',
         itinerary: mockItinerary,

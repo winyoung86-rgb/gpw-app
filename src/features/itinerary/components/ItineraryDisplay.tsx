@@ -1,9 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { GlassCard, Button, Footer } from '../../../shared/components/ui'
 import { useWizardStore } from '../../wizard/stores/wizardStore'
 import { DaySection } from './DaySection'
 
+const VISIBLE_TAGS_COUNT = 4
+
 export function ItineraryDisplay() {
+  const [tagsExpanded, setTagsExpanded] = useState(false)
   const {
     selectedEvent,
     selectedTags,
@@ -47,7 +50,7 @@ export function ItineraryDisplay() {
             Selected Tags
           </p>
           <div className="flex flex-wrap gap-2">
-            {selectedTags.map((tag) => (
+            {(tagsExpanded ? selectedTags : selectedTags.slice(0, VISIBLE_TAGS_COUNT)).map((tag) => (
               <span
                 key={tag}
                 className="text-xs bg-white/10 px-3 py-1 rounded-full border border-white/20 gradient-tag-text font-medium"
@@ -55,6 +58,15 @@ export function ItineraryDisplay() {
                 {tag}
               </span>
             ))}
+            {selectedTags.length > VISIBLE_TAGS_COUNT && (
+              <button
+                type="button"
+                onClick={() => setTagsExpanded(!tagsExpanded)}
+                className="text-xs bg-white/10 px-3 py-1 rounded-full border border-white/20 text-pink hover:bg-white/20 transition-colors font-medium"
+              >
+                {tagsExpanded ? 'Show less' : `+${selectedTags.length - VISIBLE_TAGS_COUNT} more`}
+              </button>
+            )}
           </div>
         </div>
 
