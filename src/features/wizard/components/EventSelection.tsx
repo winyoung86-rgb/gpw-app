@@ -3,7 +3,7 @@ import { useWizardStore } from '../stores/wizardStore'
 import { events } from '../data/events'
 
 export function EventSelection() {
-  const { selectedEvent, setSelectedEvent, nextStep } = useWizardStore()
+  const { selectedEvent, setSelectedEvent, nextStep, setCurrentStep, setCameFromStep1 } = useWizardStore()
 
   const eventOptions = events.map((event) => ({
     value: event.id,
@@ -17,6 +17,16 @@ export function EventSelection() {
   }
 
   const canProceed = selectedEvent !== null
+
+  const handleSeeAllParties = () => {
+    setCameFromStep1(true)
+    setCurrentStep(6)
+  }
+
+  const handleGenerateSchedule = () => {
+    setCameFromStep1(false)
+    nextStep()
+  }
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -43,14 +53,23 @@ export function EventSelection() {
           />
         </div>
 
-        {/* Navigation */}
-        <div className="flex justify-end">
+        {/* Navigation - Two paths */}
+        <div className="flex flex-col sm:flex-row gap-3">
           <Button
-            onClick={nextStep}
+            onClick={handleSeeAllParties}
+            disabled={!canProceed}
+            variant="outline"
+            className="flex-1"
+          >
+            See All Parties
+          </Button>
+          <Button
+            onClick={handleGenerateSchedule}
             disabled={!canProceed}
             variant="primary"
+            className="flex-1 btn-shimmer"
           >
-            Next →
+            Create Agenda
           </Button>
         </div>
 

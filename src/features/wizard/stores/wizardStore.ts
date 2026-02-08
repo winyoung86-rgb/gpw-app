@@ -57,6 +57,7 @@ function parseTimeToMinutes(timeStr: string): number {
 interface WizardState {
   // Navigation
   currentStep: number
+  cameFromStep1: boolean
 
   // Step 1: Event
   selectedEvent: Event | null
@@ -84,6 +85,7 @@ interface WizardActions {
   setCurrentStep: (step: number) => void
   nextStep: () => void
   prevStep: () => void
+  setCameFromStep1: (value: boolean) => void
 
   // Step 1
   setSelectedEvent: (event: Event | null) => void
@@ -121,6 +123,7 @@ interface WizardActions {
 
 const initialState: WizardState = {
   currentStep: 1,
+  cameFromStep1: false,
   selectedEvent: null,
   selectedTags: [],
   arrivalDate: null,
@@ -140,6 +143,7 @@ export const useWizardStore = create<WizardState & WizardActions>((set) => ({
   setCurrentStep: (step) => set({ currentStep: step }),
   nextStep: () => set((state) => ({ currentStep: Math.min(state.currentStep + 1, 6) })),
   prevStep: () => set((state) => ({ currentStep: Math.max(state.currentStep - 1, 1) })),
+  setCameFromStep1: (value) => set({ cameFromStep1: value }),
 
   // Step 1
   setSelectedEvent: (event) => set({ selectedEvent: event }),

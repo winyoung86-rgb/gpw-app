@@ -470,6 +470,53 @@ h3 {
   text-shadow: 0 0 10px rgba(255, 0, 128, 0.4);
 }
 
+/* ===== BUTTON GLOW PULSE ===== */
+
+/* Pulsing glow — cycles through purple / pink / orange (stronger) */
+@keyframes cta-glow-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(176, 38, 255, 0.5),
+      0 0 40px rgba(255, 0, 128, 0.25),
+      0 0 60px rgba(176, 38, 255, 0.1);
+  }
+  33% {
+    box-shadow:
+      0 0 24px rgba(255, 0, 128, 0.55),
+      0 0 48px rgba(176, 38, 255, 0.3),
+      0 0 70px rgba(255, 69, 0, 0.12);
+  }
+  66% {
+    box-shadow:
+      0 0 22px rgba(176, 38, 255, 0.6),
+      0 0 44px rgba(255, 69, 0, 0.25),
+      0 0 65px rgba(255, 0, 128, 0.15);
+  }
+}
+
+/* Border color shift — purple → pink → back */
+@keyframes border-glow-shift {
+  0%, 100% { border-color: rgba(176, 38, 255, 0.5); }
+  33% { border-color: rgba(255, 0, 128, 0.55); }
+  66% { border-color: rgba(200, 50, 255, 0.5); }
+}
+
+.btn-shimmer {
+  animation:
+    cta-glow-pulse 4s ease-in-out infinite,
+    border-glow-shift 5s ease-in-out infinite;
+}
+
+.btn-shimmer:disabled {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-shimmer {
+    animation: none;
+  }
+}
+
 /* Focus states for accessibility */
 button:focus-visible,
 input:focus-visible,

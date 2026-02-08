@@ -204,8 +204,19 @@ export function AllPartiesDisplay() {
     error,
     setCurrentStep,
     addPartyToItinerary,
-    loadAllParties
+    loadAllParties,
+    cameFromStep1,
+    setCameFromStep1,
   } = useWizardStore()
+
+  const handleBack = () => {
+    if (cameFromStep1) {
+      setCameFromStep1(false)
+      setCurrentStep(1)
+    } else {
+      setCurrentStep(5)
+    }
+  }
 
   // Load parties from Supabase when component mounts
   useEffect(() => {
@@ -287,8 +298,8 @@ export function AllPartiesDisplay() {
             </p>
           </div>
           <div className="mb-6">
-            <Button onClick={() => setCurrentStep(5)} variant="ghost">
-              ← Back to Itinerary
+            <Button onClick={handleBack} variant="ghost">
+              {cameFromStep1 ? '← Back' : '← Back to Itinerary'}
             </Button>
           </div>
           <div className="text-center py-8">
@@ -316,8 +327,8 @@ export function AllPartiesDisplay() {
           </div>
 
           <div className="mb-6">
-            <Button onClick={() => setCurrentStep(5)} variant="ghost">
-              ← Back to Itinerary
+            <Button onClick={handleBack} variant="ghost">
+              {cameFromStep1 ? '← Back' : '← Back to Itinerary'}
             </Button>
           </div>
 
@@ -349,8 +360,8 @@ export function AllPartiesDisplay() {
 
         {/* Back Button */}
         <div className="mb-6">
-          <Button onClick={() => setCurrentStep(5)} variant="ghost">
-            ← Back to Itinerary ({itineraryCount} parties)
+          <Button onClick={handleBack} variant="ghost">
+            {cameFromStep1 ? '← Back' : `← Back to Itinerary (${itineraryCount} parties)`}
           </Button>
         </div>
 
