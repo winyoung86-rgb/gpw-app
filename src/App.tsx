@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   EventSelection,
@@ -8,6 +9,7 @@ import {
   useWizardStore,
 } from './features/wizard'
 import { ItineraryDisplay, AllPartiesDisplay } from './features/itinerary'
+import { ContactPage } from './features/contact'
 import { trackPageView } from './utils/analytics'
 
 const queryClient = new QueryClient({
@@ -116,7 +118,11 @@ function App() {
 
         {/* Main content */}
         <main className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4 md:p-6">
-          <WizardRouter />
+          <Routes>
+            <Route path="/" element={<WizardRouter />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
         </main>
       </div>
     </QueryClientProvider>

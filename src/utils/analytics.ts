@@ -55,3 +55,16 @@ export const trackPartyCardClick = (partyName: string) => {
 export const trackExternalLink = (url: string) => {
   trackEvent('External Link', 'click', url);
 };
+
+// Contact form tracking
+export const trackContactFormSubmit = (subject: string) => {
+  trackEvent('Contact Form', 'submit', subject);
+};
+
+export const trackContactFormSuccess = () => {
+  trackEvent('Contact Form', 'success');
+};
+
+export const trackContactFormError = (error: string) => {
+  trackEvent('Contact Form', 'error', error);
+};

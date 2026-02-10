@@ -1,3 +1,4 @@
+import { Link, useLocation } from 'react-router-dom'
 import { useWizardStore } from '../../../features/wizard/stores/wizardStore'
 import { events } from '../../../features/wizard/data/events'
 
@@ -62,6 +63,8 @@ export function Footer() {
   const setResults = useWizardStore((state) => state.setResults)
   const currentStep = useWizardStore((state) => state.currentStep)
   const isDev = import.meta.env.DEV
+  const location = useLocation()
+  const isWizardRoute = location.pathname === '/'
 
   const handleDevNav = (step: number) => {
     // For steps 5 & 6, inject mock data so pages render
@@ -80,8 +83,8 @@ export function Footer() {
 
   return (
     <div className="text-center mt-8">
-      {/* Dev Navigation Links */}
-      {isDev && (
+      {/* Dev Navigation Links — only on wizard route */}
+      {isDev && isWizardRoute && (
         <div className="flex justify-center gap-2 mb-3">
           {[1, 2, 3, 4, 5, 6].map((step) => (
             <button
@@ -116,6 +119,14 @@ export function Footer() {
         <br />
         @4the.win
       </p>
+
+      {/* Contact link */}
+      <Link
+        to="/contact"
+        className="inline-block mt-3 text-xs text-text-muted hover:text-white transition-colors"
+      >
+        Contact Us
+      </Link>
     </div>
   );
 }
