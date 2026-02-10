@@ -22,7 +22,14 @@ export async function fetchItinerary(
     clearTimeout(timeoutId);
 
     if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
+      if (response.status === 429) {
+        throw new Error(
+          "Too many requests. Please wait a few minutes and try again.",
+        );
+      }
+      throw new Error(
+        "Something went wrong generating your itinerary. Please try again.",
+      );
     }
 
     const text = await response.text();
@@ -68,9 +75,7 @@ export async function fetchItinerary(
 
       return result;
     } catch {
-      throw new Error(
-        `Invalid response from backend: ${text.substring(0, 100)}`,
-      );
+      throw new Error("We received an unexpected response. Please try again.");
     }
   } catch (error) {
     clearTimeout(timeoutId);
