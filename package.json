@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:prerender": "tsc -b && vite build && node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -36,6 +37,7 @@
     "globals": "^16.5.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
+    "puppeteer": "^24.6.1",
     "vite": "^7.2.4"
   }
 }
