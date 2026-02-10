@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { GlassCard, Select, Button, Footer } from '../../../shared/components/ui'
 import { useWizardStore } from '../stores/wizardStore'
 import { events } from '../data/events'
@@ -30,6 +31,21 @@ export function EventSelection() {
 
   return (
     <div className="w-full max-w-md mx-auto">
+      <Helmet>
+        <title>Gay Party Weekend — Plan Your Perfect Circuit Party Weekend</title>
+        <meta name="description" content="Plan your perfect LGBTQ+ circuit party weekend with AI-curated personalized itineraries. Browse 150+ parties across Folsom, NYC Pride, IML, Winter Party, and more." />
+        <link rel="canonical" href="https://gaypartyweekend.com/" />
+        <meta property="og:title" content="Gay Party Weekend — Plan Your Perfect Circuit Party Weekend" />
+        <meta property="og:description" content="Plan your perfect LGBTQ+ circuit party weekend with AI-curated personalized itineraries. Browse 150+ parties across Folsom, NYC Pride, IML, Winter Party, and more." />
+        <meta property="og:url" content="https://gaypartyweekend.com/" />
+        <meta property="og:image" content="https://gaypartyweekend.com/og-image.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Gay Party Weekend" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Gay Party Weekend — Plan Your Perfect Circuit Party Weekend" />
+        <meta name="twitter:description" content="Plan your perfect LGBTQ+ circuit party weekend with AI-curated personalized itineraries. Browse 150+ parties across Folsom, NYC Pride, IML, Winter Party, and more." />
+        <meta name="twitter:image" content="https://gaypartyweekend.com/og-image.png" />
+      </Helmet>
       <GlassCard className="p-10 md:p-12">
         {/* Header */}
         <div className="text-center mb-6">

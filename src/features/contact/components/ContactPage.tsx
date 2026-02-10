@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -74,6 +75,21 @@ export function ContactPage() {
 
   return (
     <div className="w-full max-w-lg mx-auto px-4">
+      <Helmet>
+        <title>Contact Us — Gay Party Weekend</title>
+        <meta name="description" content="Get in touch with the Gay Party Weekend team. Send us event suggestions, report issues, or inquire about partnerships." />
+        <link rel="canonical" href="https://gaypartyweekend.com/contact" />
+        <meta property="og:title" content="Contact Us — Gay Party Weekend" />
+        <meta property="og:description" content="Get in touch with the Gay Party Weekend team. Send us event suggestions, report issues, or inquire about partnerships." />
+        <meta property="og:url" content="https://gaypartyweekend.com/contact" />
+        <meta property="og:image" content="https://gaypartyweekend.com/og-image.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Gay Party Weekend" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Us — Gay Party Weekend" />
+        <meta name="twitter:description" content="Get in touch with the Gay Party Weekend team. Send us event suggestions, report issues, or inquire about partnerships." />
+        <meta name="twitter:image" content="https://gaypartyweekend.com/og-image.png" />
+      </Helmet>
       <Toast
         visible={toast.visible}
         message={toast.message}
