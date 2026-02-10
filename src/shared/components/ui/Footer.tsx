@@ -82,7 +82,7 @@ export function Footer() {
   }
 
   return (
-    <div className="text-center mt-8">
+    <footer className="text-center mt-8">
       {/* Dev Navigation Links — only on wizard route */}
       {isDev && isWizardRoute && (
         <div className="flex justify-center gap-2 mb-3">
@@ -127,6 +127,6 @@ export function Footer() {
       >
         Contact Us
       </Link>
-    </div>
+    </footer>
   );
 }

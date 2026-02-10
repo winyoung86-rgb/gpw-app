@@ -33,7 +33,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
   ]
 
   return (
-    <div className="flex items-center justify-center gap-2 mb-6">
+    <nav aria-label="Wizard progress" className="flex items-center justify-center gap-2 mb-6">
       {steps.map((step, index) => (
         <div key={step.num} className="flex items-center">
           {/* Step dot */}
@@ -63,7 +63,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
           )}
         </div>
       ))}
-    </div>
+    </nav>
   )
 }
 

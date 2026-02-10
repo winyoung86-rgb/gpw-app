@@ -18,21 +18,24 @@ export function DaySection({
   const [isExpanded, setIsExpanded] = useState(defaultExpanded)
 
   return (
-    <div className="border border-white/10 rounded-xl overflow-hidden">
-      {/* Day Header */}
-      <button
-        type="button"
-        onClick={() => setIsExpanded(!isExpanded)}
-        className={`w-full flex items-center justify-between p-4 hover:bg-white/10 transition-colors text-left cursor-pointer ${
-          isExpanded ? 'day-header-expanded' : 'bg-white/5'
-        }`}
-      >
-        <div className="flex items-center gap-3">
-          <span className="text-lg text-white">{isExpanded ? '▼' : '▶'}</span>
-          <span className="font-heading font-semibold text-white">{day.day_label}</span>
-        </div>
-        <span className="text-white text-sm">Day {day.day_number}</span>
-      </button>
+    <section className="border border-white/10 rounded-xl overflow-hidden">
+      {/* Day Header — accordion pattern: h3 provides outline, button provides interaction */}
+      <h3 className="m-0 text-base font-normal">
+        <button
+          type="button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-expanded={isExpanded}
+          className={`w-full flex items-center justify-between p-4 hover:bg-white/10 transition-colors text-left cursor-pointer ${
+            isExpanded ? 'day-header-expanded' : 'bg-white/5'
+          }`}
+        >
+          <span className="flex items-center gap-3">
+            <span className="text-lg text-white">{isExpanded ? '▼' : '▶'}</span>
+            <span className="font-heading font-semibold text-white">{day.day_label}</span>
+          </span>
+          <span className="text-white text-sm">Day {day.day_number}</span>
+        </button>
+      </h3>
 
       {/* Parties */}
       {isExpanded && (
@@ -52,6 +55,6 @@ export function DaySection({
           )}
         </div>
       )}
-    </div>
+    </section>
   )
 }

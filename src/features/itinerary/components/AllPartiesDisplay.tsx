@@ -5,38 +5,38 @@ import type { Party } from '../../../types'
 
 // SVG Icons
 const ClockIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 )
 
 const LocationIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
   </svg>
 )
 
 const TicketIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
   </svg>
 )
 
 const PlusIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
   </svg>
 )
 
 const CheckIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
   </svg>
 )
 
 const LinkIcon = () => (
-  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
   </svg>
 )
@@ -49,7 +49,7 @@ interface AllPartyCardProps {
 
 function AllPartyCard({ party, isInItinerary, onAdd }: AllPartyCardProps) {
   return (
-    <div className={`bg-white/5 backdrop-blur-sm rounded-xl p-4 border transition-all ${
+    <article className={`bg-white/5 backdrop-blur-sm rounded-xl p-4 border transition-all ${
       isInItinerary
         ? 'border-green-500/50 bg-green-500/5'
         : 'border-white/10 hover:border-white/20'
@@ -138,7 +138,7 @@ function AllPartyCard({ party, isInItinerary, onAdd }: AllPartyCardProps) {
           </span>
         </div>
       </div>
-    </div>
+    </article>
   )
 }
 
@@ -160,21 +160,24 @@ function DaySection({ dayKey, dayLabel, parties, isPartyInItinerary, onAddParty,
   }, [parties])
 
   return (
-    <div className="border border-white/10 rounded-xl overflow-hidden mb-3">
-      {/* Day Header - Clickable */}
-      <button
-        type="button"
-        onClick={() => setIsExpanded(!isExpanded)}
-        className={`w-full flex items-center justify-between p-4 hover:bg-white/10 transition-colors text-left cursor-pointer ${
-          isExpanded ? 'day-header-expanded' : 'bg-white/5'
-        }`}
-      >
-        <div className="flex items-center gap-3">
-          <span className="text-lg text-white">{isExpanded ? '▼' : '▶'}</span>
-          <span className="font-heading font-semibold text-white">{dayLabel}</span>
-        </div>
-        <span className="text-white/70 text-sm">{parties.length} parties</span>
-      </button>
+    <section className="border border-white/10 rounded-xl overflow-hidden mb-3">
+      {/* Day Header — accordion pattern: h3 provides outline, button provides interaction */}
+      <h3 className="m-0 text-base font-normal">
+        <button
+          type="button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-expanded={isExpanded}
+          className={`w-full flex items-center justify-between p-4 hover:bg-white/10 transition-colors text-left cursor-pointer ${
+            isExpanded ? 'day-header-expanded' : 'bg-white/5'
+          }`}
+        >
+          <span className="flex items-center gap-3">
+            <span className="text-lg text-white">{isExpanded ? '▼' : '▶'}</span>
+            <span className="font-heading font-semibold text-white">{dayLabel}</span>
+          </span>
+          <span className="text-white/70 text-sm">{parties.length} parties</span>
+        </button>
+      </h3>
 
       {/* Parties List */}
       {isExpanded && (
@@ -191,7 +194,7 @@ function DaySection({ dayKey, dayLabel, parties, isPartyInItinerary, onAddParty,
           </div>
         </div>
       )}
-    </div>
+    </section>
   )
 }
 

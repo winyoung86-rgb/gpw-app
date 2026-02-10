@@ -72,9 +72,9 @@ export function ItineraryDisplay() {
 
         {/* Vibe Summary */}
         {vibeSummary && (
-          <div className="mb-6 p-4 vibe-quote-box rounded-xl italic text-white">
+          <blockquote className="mb-6 p-4 vibe-quote-box rounded-xl italic text-white">
             "{vibeSummary}"
-          </div>
+          </blockquote>
         )}
 
         {/* View All Parties Button */}
