@@ -42,7 +42,7 @@ jobs:
           local-dir: ./dist/
           server-dir: ./
           dangerous-clean-slate: true
-          timeout: 120000
+          timeout: 300000
           log-level: verbose
           protocol: ftps
           security: loose
