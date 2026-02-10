@@ -1,16 +1,17 @@
-import { useEffect } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   EventSelection,
   TagSelection,
   DateSelection,
   LoadingState,
   useWizardStore,
-} from './features/wizard'
-import { ItineraryDisplay, AllPartiesDisplay } from './features/itinerary'
-import { ContactPage } from './features/contact'
-import { trackPageView } from './utils/analytics'
+} from "./features/wizard";
+import { ItineraryDisplay, AllPartiesDisplay } from "./features/itinerary";
+import { ContactPage } from "./features/contact";
+import { ErrorBoundary } from "./shared/components/ErrorBoundary";
+import { trackPageView } from "./utils/analytics";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,21 +20,24 @@ const queryClient = new QueryClient({
       retry: 2,
     },
   },
-})
+});
 
 // Step indicator component
 function StepIndicator({ currentStep }: { currentStep: number }) {
   // Only show for steps 1-3 (user-interactive steps), hide during loading and results
-  if (currentStep > 3) return null
+  if (currentStep > 3) return null;
 
   const steps = [
-    { num: 1, label: 'Event' },
-    { num: 2, label: 'Vibe' },
-    { num: 3, label: 'Dates' },
-  ]
+    { num: 1, label: "Event" },
+    { num: 2, label: "Vibe" },
+    { num: 3, label: "Dates" },
+  ];
 
   return (
-    <nav aria-label="Wizard progress" className="flex items-center justify-center gap-2 mb-6">
+    <nav
+      aria-label="Wizard progress"
+      className="flex items-center justify-center gap-2 mb-6"
+    >
       {steps.map((step, index) => (
         <div key={step.num} className="flex items-center">
           {/* Step dot */}
@@ -43,48 +47,48 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
               transition-all duration-300
               ${
                 currentStep === step.num
-                  ? 'bg-purple text-white step-dot-active'
+                  ? "bg-purple text-white step-dot-active"
                   : currentStep > step.num
-                    ? 'bg-pink/30 text-white border border-pink/50'
-                    : 'bg-white/10 text-white/50 border border-white/20'
+                    ? "bg-pink/30 text-white border border-pink/50"
+                    : "bg-white/10 text-white/50 border border-white/20"
               }
             `}
           >
-            {currentStep > step.num ? '✓' : step.num}
+            {currentStep > step.num ? "✓" : step.num}
           </div>
           {/* Connector line */}
           {index < steps.length - 1 && (
             <div
               className={`
                 w-8 h-0.5 mx-1 transition-all duration-300
-                ${currentStep > step.num ? 'bg-gradient-to-r from-pink to-purple' : 'bg-white/20'}
+                ${currentStep > step.num ? "bg-gradient-to-r from-pink to-purple" : "bg-white/20"}
               `}
             />
           )}
         </div>
       ))}
     </nav>
-  )
+  );
 }
 
 // Map step numbers to page names for analytics
 const stepPageNames: Record<number, string> = {
-  1: '/event-selection',
-  2: '/tag-selection',
-  3: '/date-selection',
-  4: '/loading',
-  5: '/itinerary',
-  6: '/all-parties',
-}
+  1: "/event-selection",
+  2: "/tag-selection",
+  3: "/date-selection",
+  4: "/loading",
+  5: "/itinerary",
+  6: "/all-parties",
+};
 
 function WizardRouter() {
-  const currentStep = useWizardStore((state) => state.currentStep)
+  const currentStep = useWizardStore((state) => state.currentStep);
 
   // Track page views when step changes
   useEffect(() => {
-    const pageName = stepPageNames[currentStep] || `/step-${currentStep}`
-    trackPageView(pageName)
-  }, [currentStep])
+    const pageName = stepPageNames[currentStep] || `/step-${currentStep}`;
+    trackPageView(pageName);
+  }, [currentStep]);
 
   const steps: Record<number, React.ReactNode> = {
     1: <EventSelection />,
@@ -93,16 +97,14 @@ function WizardRouter() {
     4: <LoadingState />,
     5: <ItineraryDisplay />,
     6: <AllPartiesDisplay />,
-  }
+  };
 
   return (
     <div className="w-full">
       <StepIndicator currentStep={currentStep} />
-      <div className="wizard-step-transition">
-        {steps[currentStep]}
-      </div>
+      <div className="wizard-step-transition">{steps[currentStep]}</div>
     </div>
-  )
+  );
 }
 
 function App() {
@@ -118,15 +120,17 @@ function App() {
 
         {/* Main content */}
         <main className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4 md:p-6">
-          <Routes>
-            <Route path="/" element={<WizardRouter />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <ErrorBoundary>
+            <Routes>
+              <Route path="/" element={<WizardRouter />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </ErrorBoundary>
         </main>
       </div>
     </QueryClientProvider>
-  )
+  );
 }
 
-export default App
+export default App;
