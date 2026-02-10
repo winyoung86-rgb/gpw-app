@@ -13,7 +13,11 @@ async function prerender() {
   });
 
   const base = 'http://localhost:4173';
-  const browser = await puppeteer.launch({ headless: true });
+  const isCI = process.env.CI === 'true';
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: isCI ? ['--no-sandbox', '--disable-setuid-sandbox'] : [],
+  });
 
   try {
     for (const route of ROUTES) {
