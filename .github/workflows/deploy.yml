@@ -41,5 +41,5 @@ jobs:
           timeout: 300000
           log-level: verbose
           protocol: ftps
-          security: strict
+          security: loose # Hostinger's FTPS cert fails strict validation
 
