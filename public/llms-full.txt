@@ -1,0 +1,83 @@
+# Gay Party Weekend — Full Reference
+
+> Plan your perfect LGBTQ+ circuit party weekend with AI-curated itineraries.
+
+## About
+
+Gay Party Weekend (gaypartyweekend.com) is a free web app that helps LGBTQ+ travelers plan circuit party weekends. Users go through a guided wizard: select an event, choose vibe and crowd preferences from 75+ tags across 7 categories, pick travel dates, and receive a personalized AI-generated itinerary with curated party recommendations.
+
+The app covers 150+ parties across major LGBTQ+ circuit weekends in the US. Each party listing includes venue details, ticket price tiers, music genres, dress codes, crowd demographics, and intensity ratings. After receiving their AI itinerary, users can browse all available parties and customize their schedule.
+
+## Features
+- AI-powered itinerary generation based on personal preferences
+- Browse 150+ LGBTQ+ circuit parties with detailed listings
+- Filter by vibe, crowd, music, dress code, and intensity
+- View venues, ticket prices, dates, and event descriptions
+- Customize your itinerary after AI generation
+- Mobile-friendly dark glassmorphism design
+- Free to use, no account required
+
+## Events Covered (2026)
+- Winter Party — Miami (Feb 27 – Mar 2)
+- Purple Party — Dallas (Apr 29 – May 4)
+- International Mr. Leather (IML) — Chicago (May 21 – 25)
+- NYC Pride — New York (Jun 26 – 29)
+- Dore Alley — San Francisco (Jul 25 – 27)
+- Folsom Street Fair — San Francisco (Sep 25 – 28)
+
+## Tag Categories
+
+Users select 3 or more tags to personalize their itinerary. Tags are organized into 7 categories:
+
+### Event Type
+streetfair, circuit, afterparty, playevent, barnight, blockparty
+
+### Vibe
+leather, underground, intimate, artsy, highenergy, chill, raunchy, inclusive, immersive, playful, performance, cruisy, tribal, glam, dirty, dark
+
+### Crowd
+bear, twink, daddy, pup, muscle, diverse, kink, drag, queer, raver, femme, poc, jock, leather
+
+### Dress Code
+leather-required, casual, themedcostume, underwear, fetishgear, pupplay, sportgear, drag, swimwear, rubber, latex, uniform, neon, colorcode, ravewear, boots, harness
+
+### Music
+house, techno, techhouse, tribal, vocalhouse, disco, edm, circuit, trance, pop, electropop, indie, hiphop, rnb, latin
+
+### Intensity
+social, flirty, cruising, playpossible, playfocused, sexpositive, explicit
+
+## How the AI Itinerary Works
+
+1. **User selects an event** — one of the 6 circuit weekends listed above
+2. **User picks tags** — 3 or more preferences from the categories above
+3. **User sets dates** — arrival and departure dates within the event window
+4. **AI generates itinerary** — the system queries the party database, scores each party against the user's tag preferences, and uses Google Gemini 2.0 Flash to generate a curated day-by-day itinerary with 1-3 recommended parties per day
+5. **User reviews and customizes** — the generated itinerary is displayed with party details, and users can browse all available parties to add or swap recommendations
+
+## Party Data
+
+The database contains 150+ parties across all 6 events. Each party record includes:
+- Party name and event weekend
+- Date and time
+- Venue name and location
+- Ticket price tiers (general admission, VIP, etc.)
+- Tags for vibe, crowd, music, dress code, and intensity
+- Description and additional notes
+- Website links
+
+Party data is manually curated from official event sources and updated regularly.
+
+## Technical Overview
+
+Gay Party Weekend is a React single-page application:
+- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS v4
+- **State management:** Zustand (wizard flow), TanStack React Query (server state)
+- **Backend:** Supabase (PostgreSQL database), n8n (workflow automation)
+- **AI:** Google Gemini 2.0 Flash for itinerary generation
+- **Design:** Dark glassmorphism aesthetic with Space Grotesk and Outfit typography
+
+## Links
+- Website: https://gaypartyweekend.com
+- Contact: https://gaypartyweekend.com/contact
+- Concise version: https://gaypartyweekend.com/llms.txt

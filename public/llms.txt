@@ -1,0 +1,28 @@
+# Gay Party Weekend
+
+> Plan your perfect LGBTQ+ circuit party weekend with AI-curated itineraries.
+
+Gay Party Weekend (gaypartyweekend.com) is a free web app that helps LGBTQ+ travelers plan circuit party weekends. Users select an event, choose vibe and crowd preferences from 75+ tags, pick travel dates, and receive a personalized AI-generated itinerary with curated party recommendations.
+
+The app covers 150+ parties across major LGBTQ+ circuit weekends in the US. Each party listing includes venue details, ticket price tiers, music genres, dress codes, crowd demographics, and intensity ratings. The AI itinerary engine scores parties against user preferences and generates a day-by-day schedule with 1-3 recommended parties per day.
+
+## Features
+- AI-powered itinerary generation based on personal preferences
+- Browse 150+ LGBTQ+ circuit parties with detailed listings
+- Filter by vibe, crowd, music, dress code, and intensity
+- View venues, ticket prices, dates, and event descriptions
+- Customize your itinerary after AI generation
+- Mobile-friendly dark glassmorphism design
+
+## Events Covered (2026)
+- Winter Party (Miami)
+- Purple Party (Dallas)
+- International Mr. Leather / IML (Chicago)
+- NYC Pride (New York)
+- Dore Alley (San Francisco)
+- Folsom Street Fair (San Francisco)
+
+## More Information
+- Full details: https://gaypartyweekend.com/llms-full.txt
+- Website: https://gaypartyweekend.com
+- Contact: https://gaypartyweekend.com/contact
